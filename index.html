@@ -69,9 +69,11 @@ h2{font-family:var(--font-body);font-weight:800;margin:0;text-wrap:balance;lette
 .theme-toggle .icon-sun{display:none}
 :root[data-theme="light"] .theme-toggle .icon-moon{display:none}
 :root[data-theme="light"] .theme-toggle .icon-sun{display:block}
+.manager-toggle svg{width:16px;height:16px}
+.manager-toggle.active{color:var(--red);border-color:var(--red)}
 .brand{display:flex;align-items:center;gap:14px}
 .brand .mark{width:38px;height:38px;border-radius:11px;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:16px;color:#fff;flex-shrink:0;box-shadow:0 6px 16px -6px rgba(250,25,74,.6)}
-.brand h1{font-size:19px;line-height:1;letter-spacing:0}
+.brand h1{font-size:21px;line-height:1;letter-spacing:0}
 .brand .sub{color:var(--ink-faint);font-size:12px;margin-top:4px;letter-spacing:.03em}
 .topbar-right{display:flex;align-items:center;gap:16px}
 .clock{color:var(--ink-dim);font-size:13px;font-variant-numeric:tabular-nums;text-align:right}
@@ -82,7 +84,7 @@ h2{font-family:var(--font-body);font-weight:800;margin:0;text-wrap:balance;lette
 /* section shell */
 section{margin-bottom:34px}
 .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;gap:12px}
-.section-head h2{font-size:22px;color:var(--ink)}
+.section-head h2{font-size:27px;color:var(--ink)}
 .section-head .eyebrow{color:var(--red);font-family:var(--font-body);font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:5px}
 .section-note{color:var(--ink-faint);font-size:12px;white-space:nowrap}
 
@@ -133,9 +135,9 @@ button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
 .task-group{margin-bottom:16px}
 .task-group:last-child{margin-bottom:0}
 .task-group h3{font-size:11.5px;color:var(--ink-dim);letter-spacing:.1em;margin-bottom:8px}
-.task{display:flex;align-items:flex-start;gap:10px;padding:9px 4px;border-bottom:1px solid var(--line)}
+.task{display:flex;align-items:center;gap:10px;padding:9px 4px;border-bottom:1px solid var(--line)}
 .task:last-child{border-bottom:none}
-.task .check{width:16px;height:16px;border-radius:5px;border:1.5px solid var(--ink-faint);flex-shrink:0;margin-top:2px}
+.task .check{width:16px;height:16px;border-radius:5px;border:1.5px solid var(--ink-faint);flex-shrink:0;cursor:pointer}
 .task .check.on{background:var(--good);border-color:var(--good)}
 .task.priority .check{border-color:var(--red)}
 .task p{margin:0;font-size:13.5px;flex:1}
@@ -143,13 +145,13 @@ button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
 
 /* handovers */
 .handover-list{display:flex;flex-direction:column;gap:10px}
-.handover{padding:11px 13px;border-radius:10px;background:var(--surface-2)}
+.handover{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border-radius:10px;background:var(--surface-2)}
 .handover p{margin:0 0 4px;font-size:13.5px}
 .handover .meta{font-size:11px;color:var(--ink-faint)}
 
 /* events */
 .events-row{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px}
-.event-card{flex:0 0 168px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.event-card{position:relative;flex:0 0 168px;padding:14px;display:flex;flex-direction:column;gap:8px}
 .event-card .day{font-family:var(--font-display);font-size:26px;line-height:1}
 .event-card .mon{color:var(--ink-faint);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
 .event-card .title{font-size:13px;font-weight:700}
@@ -175,7 +177,7 @@ button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
 /* spotlight */
 .spotlight{padding:22px 24px;display:flex;align-items:center;gap:20px;background:linear-gradient(120deg,rgba(250,25,74,.14),rgba(250,25,74,0) 60%),var(--surface)}
 .spotlight .avatar{width:64px;height:64px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:24px;color:#fff;flex-shrink:0}
-.spotlight .name{font-family:var(--font-display);font-size:22px}
+.spotlight .name{font-family:var(--font-display);font-size:26px}
 .spotlight .note{color:var(--ink-dim);font-size:13.5px;margin-top:4px}
 .spotlight .weekof{color:var(--red);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
 
@@ -193,48 +195,32 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;margin-top:10px
 
 /* home: greeting */
 .greeting{margin:26px 0 24px}
-.greeting .hello{font-size:36px;line-height:1.1;font-weight:800;letter-spacing:-.02em}
+.greeting .hello{font-size:clamp(32px,5.5vw,46px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
 .greeting .hello .accent{color:var(--red)}
 .greeting .tagline{color:var(--ink-dim);font-size:15px;margin-top:8px;max-width:52ch;font-weight:500}
 
-/* home: hero row */
-.hero-row{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin-bottom:24px;align-items:stretch}
-@media (max-width:900px){.hero-row{grid-template-columns:1fr}}
+/* home: shift today */
+.shift-card{padding:16px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.shift-label{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);flex-shrink:0}
+.shift-pills{display:flex;flex-wrap:wrap;gap:8px}
+.shift-pill{font-size:13px;font-weight:700;padding:6px 14px;border-radius:100px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink)}
 
-/* home: rings */
-.home-hero{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;padding:28px 30px;position:relative;overflow:hidden}
-.home-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(420px 260px at 8% 15%, var(--red-glow), transparent 65%);pointer-events:none}
-@media (max-width:720px){.home-hero{grid-template-columns:1fr;justify-items:center;text-align:center}}
-
-/* home: reviews mini-ring card */
-.reviews-card{padding:26px 26px;display:flex;flex-direction:column;gap:14px;justify-content:center}
-.reviews-top{display:flex;align-items:center;gap:16px}
-.reviews-ring{position:relative;width:76px;height:76px;flex-shrink:0}
-.reviews-ring svg{transform:rotate(-90deg)}
-.reviews-ring .rr-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:15px}
-.reviews-rating{display:flex;align-items:baseline;gap:6px}
-.reviews-rating .num{font-family:var(--font-display);font-size:30px;line-height:1}
-.reviews-stars{color:var(--ring-reviews);display:flex;gap:1px;margin-top:4px}
-.reviews-stars svg{width:14px;height:14px}
-.reviews-meta{font-size:12.5px;color:var(--ink-faint)}
-.reviews-foot{font-size:13px;color:var(--ink-dim);border-top:1px solid var(--line);padding-top:12px}
-.reviews-foot b{color:var(--ink)}
-.rings-wrap{position:relative;width:190px;height:190px;flex-shrink:0}
-.rings-wrap svg{transform:rotate(-90deg);overflow:visible}
+/* home: metric rings (separate cards) */
+.metrics-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:16px}
+.metric-card{padding:22px 22px 20px;display:flex;align-items:center;gap:16px}
 .ring-track{fill:none;stroke:var(--ring-track)}
 .ring-fill{fill:none;stroke-linecap:round;transition:stroke-dashoffset .8s cubic-bezier(.22,.9,.3,1);filter:drop-shadow(0 0 6px currentColor)}
-.rings-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none}
-.rings-center .pct{font-family:var(--font-display);font-size:32px;line-height:1}
-.rings-center .lbl{font-size:10px;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
-.hero-side{position:relative;min-width:0}
-.ring-legend{display:flex;flex-direction:column;gap:11px;margin-bottom:14px}
-.ring-legend-row{display:flex;align-items:center;gap:10px}
-.ring-legend-row .dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
-.ring-legend-row .name{font-size:13px;font-weight:700;flex:1}
-.ring-legend-row .val{font-size:13px;color:var(--ink-dim);font-variant-numeric:tabular-nums}
-.ring-legend-row .val b{color:var(--ink)}
-.momentum{font-size:13px;color:var(--ink-dim);border-top:1px solid var(--line);padding-top:12px}
-.momentum b{color:var(--ink)}
+.metric-ring{position:relative;width:86px;height:86px;flex-shrink:0}
+.metric-ring svg{transform:rotate(-90deg)}
+.metric-ring-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:17px}
+.metric-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.metric-label{font-family:var(--font-display);font-size:15px;letter-spacing:.01em}
+.metric-label span{font-family:var(--font-body);font-weight:500;font-size:11px;color:var(--ink-faint);text-transform:none;letter-spacing:0}
+.metric-line{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--ink-dim)}
+.metric-line b{color:var(--ink);font-variant-numeric:tabular-nums;font-weight:800}
+
+.momentum-card{padding:16px 22px;font-size:13.5px;color:var(--ink-dim);margin-bottom:24px}
+.momentum-card b{color:var(--ink)}
 
 /* home: nav grid */
 .nav-eyebrow{color:var(--red);font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 14px}
@@ -247,7 +233,7 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;margin-top:10px
 .nav-card .nc-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .nav-card .nc-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb, var(--nc-accent, var(--red)) 16%, transparent);color:var(--nc-accent, var(--red));flex-shrink:0}
 .nav-card .nc-icon svg{width:18px;height:18px}
-.nav-card .nc-title{font-family:var(--font-display);font-size:14.5px;flex:1}
+.nav-card .nc-title{font-family:var(--font-display);font-size:16.5px;flex:1}
 .nav-card .nc-arrow{color:var(--ink-faint);font-family:var(--font-display);font-size:16px;transition:transform .18s ease,color .18s ease}
 .nav-card:hover .nc-arrow{transform:translateX(3px);color:var(--nc-accent, var(--red))}
 .nav-card .nc-preview{font-size:13px;color:var(--ink-dim);line-height:1.4;min-height:1.4em}
@@ -259,7 +245,7 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;margin-top:10px
 .issue-form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (max-width:560px){.issue-form .row{grid-template-columns:1fr}}
 .issue-form label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);display:block;margin-bottom:6px}
-.issue-form select,.issue-form input[type=text],.issue-form textarea{
+.issue-form select,.issue-form input,.issue-form textarea{
   width:100%;font-family:var(--font-body);font-size:14px;color:var(--ink);
   background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:11px 13px;
   transition:border-color .15s ease;
@@ -296,6 +282,14 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;margin-top:10px
 .issue-comment-row input{flex:1;font-family:var(--font-body);font-size:12.5px;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:100px;padding:8px 15px}
 .issue-comment-row input:focus{outline:none;border-color:var(--red)}
 .issue-comment-row button{font-size:11.5px;font-weight:800;color:var(--red);padding:8px 12px;flex-shrink:0}
+
+/* manager mode */
+.manager-only{display:none}
+:root[data-manager="1"] .manager-only{display:block}
+:root[data-manager="1"] .manager-only.inline{display:inline-flex}
+.manage-form-card{margin-bottom:16px}
+.del-btn{width:26px;height:26px;border-radius:50%;background:var(--surface-2);color:var(--ink-faint);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;transition:color .15s ease,background .15s ease;margin-left:auto}
+.del-btn:hover{color:#fff;background:var(--red)}
 </style>
 
 <div class="wrap">
@@ -310,6 +304,9 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;margin-top:10px
     <div class="topbar-right">
       <div class="pulse"><span class="dot"></span><span id="last-fed">Live</span></div>
       <div class="clock" id="clock"><b id="clock-time">--:--</b><span id="clock-date">loading</span></div>
+      <button class="theme-toggle manager-toggle" id="manager-toggle" type="button" aria-label="Toggle manager mode" title="Manager mode — add or edit content">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </button>
       <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark/light theme" title="Toggle dark/light theme">
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -324,46 +321,71 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;margin-top:10px
       <p class="tagline">Home of TrainMore's busiest, most-visited club in the country — here's where we stand today.</p>
     </div>
 
-    <div class="hero-row">
-      <div class="card home-hero fade-in d1">
-        <div class="rings-wrap">
-          <svg width="190" height="190" viewBox="0 0 190 190">
-            <circle class="ring-track" cx="95" cy="95" r="82" stroke-width="13"/>
-            <circle class="ring-fill" id="ring-intakes" cx="95" cy="95" r="82" stroke-width="13" style="stroke:var(--ring-intakes);color:var(--ring-intakes)"/>
-            <circle class="ring-track" cx="95" cy="95" r="64" stroke-width="13"/>
-            <circle class="ring-fill" id="ring-dpc" cx="95" cy="95" r="64" stroke-width="13" style="stroke:var(--ring-dpc);color:var(--ring-dpc)"/>
-            <circle class="ring-track" cx="95" cy="95" r="46" stroke-width="13"/>
-            <circle class="ring-fill" id="ring-vending" cx="95" cy="95" r="46" stroke-width="13" style="stroke:var(--ring-vending);color:var(--ring-vending)"/>
+    <div class="card shift-card fade-in d1">
+      <span class="shift-label">On shift today</span>
+      <div class="shift-pills" id="shift-pills"></div>
+    </div>
+
+    <div class="metrics-row fade-in d1">
+      <div class="card metric-card" style="--m-accent:var(--ring-intakes)">
+        <div class="metric-ring">
+          <svg width="86" height="86" viewBox="0 0 86 86">
+            <circle class="ring-track" cx="43" cy="43" r="35" stroke-width="9"/>
+            <circle class="ring-fill" id="ring-intakes" cx="43" cy="43" r="35" stroke-width="9" style="stroke:var(--ring-intakes);color:var(--ring-intakes)"/>
           </svg>
-          <div class="rings-center">
-            <div class="pct" id="rings-center-pct">–%</div>
-            <div class="lbl">Month to target</div>
-          </div>
+          <div class="metric-ring-pct" id="ring-intakes-pct">–%</div>
         </div>
-        <div class="hero-side">
-          <div class="ring-legend" id="ring-legend"></div>
-          <div class="momentum" id="momentum">Waiting for today's numbers.</div>
+        <div class="metric-body">
+          <div class="metric-label">Intakes</div>
+          <div class="metric-line"><span>Today</span><b id="m-intakes-today">– / –</b></div>
+          <div class="metric-line"><span>Month</span><b id="m-intakes-month">– / –</b></div>
         </div>
       </div>
-
-      <div class="card reviews-card fade-in d1">
-        <div class="reviews-top">
-          <div class="reviews-ring">
-            <svg width="76" height="76" viewBox="0 0 76 76">
-              <circle class="ring-track" cx="38" cy="38" r="31" stroke-width="9"/>
-              <circle class="ring-fill" id="ring-reviews" cx="38" cy="38" r="31" stroke-width="9" style="stroke:var(--ring-reviews);color:var(--ring-reviews)"/>
-            </svg>
-            <div class="rr-center" id="reviews-ring-pct">–%</div>
-          </div>
-          <div>
-            <div class="reviews-rating"><span class="num" id="reviews-avg">–</span><span class="section-note">/ 5</span></div>
-            <div class="reviews-stars" id="reviews-stars"></div>
-            <div class="reviews-meta" id="reviews-meta">Waiting for Google review data</div>
-          </div>
+      <div class="card metric-card" style="--m-accent:var(--ring-dpc)">
+        <div class="metric-ring">
+          <svg width="86" height="86" viewBox="0 0 86 86">
+            <circle class="ring-track" cx="43" cy="43" r="35" stroke-width="9"/>
+            <circle class="ring-fill" id="ring-dpc" cx="43" cy="43" r="35" stroke-width="9" style="stroke:var(--ring-dpc);color:var(--ring-dpc)"/>
+          </svg>
+          <div class="metric-ring-pct" id="ring-dpc-pct">–%</div>
         </div>
-        <div class="reviews-foot" id="reviews-foot">New reviews this month vs. target.</div>
+        <div class="metric-body">
+          <div class="metric-label">DPC</div>
+          <div class="metric-line"><span>Today</span><b id="m-dpc-today">– / –</b></div>
+          <div class="metric-line"><span>Month</span><b id="m-dpc-month">– / –</b></div>
+        </div>
+      </div>
+      <div class="card metric-card" style="--m-accent:var(--ring-vending)">
+        <div class="metric-ring">
+          <svg width="86" height="86" viewBox="0 0 86 86">
+            <circle class="ring-track" cx="43" cy="43" r="35" stroke-width="9"/>
+            <circle class="ring-fill" id="ring-vending" cx="43" cy="43" r="35" stroke-width="9" style="stroke:var(--ring-vending);color:var(--ring-vending)"/>
+          </svg>
+          <div class="metric-ring-pct" id="ring-vending-pct">–%</div>
+        </div>
+        <div class="metric-body">
+          <div class="metric-label">Vending</div>
+          <div class="metric-line"><span>Today</span><b id="m-vending-today">– / –</b></div>
+          <div class="metric-line"><span>Month</span><b id="m-vending-month">– / –</b></div>
+        </div>
+      </div>
+      <div class="card metric-card" style="--m-accent:var(--ring-reviews)">
+        <div class="metric-ring">
+          <svg width="86" height="86" viewBox="0 0 86 86">
+            <circle class="ring-track" cx="43" cy="43" r="35" stroke-width="9"/>
+            <circle class="ring-fill" id="ring-reviews" cx="43" cy="43" r="35" stroke-width="9" style="stroke:var(--ring-reviews);color:var(--ring-reviews)"/>
+          </svg>
+          <div class="metric-ring-pct" id="reviews-ring-pct">–%</div>
+        </div>
+        <div class="metric-body">
+          <div class="metric-label">Google Reviews <span id="reviews-total"></span></div>
+          <div class="metric-line"><span>Rating</span><b id="reviews-avg">– / 5</b></div>
+          <div class="metric-line"><span>New / target</span><b id="reviews-newtarget">– / –</b></div>
+        </div>
       </div>
     </div>
+
+    <div class="card momentum-card fade-in d1" id="momentum">Waiting for today's numbers.</div>
 
     <p class="nav-eyebrow fade-in d2">Jump to</p>
     <div class="nav-grid fade-in d2" id="nav-grid">
@@ -462,6 +484,27 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;margin-top:10px
   <!-- ================= UPDATES ================= -->
   <div class="view" id="view-updates" hidden>
     <div class="back-row"><button class="back-btn" data-back type="button"><span class="chev">←</span> Hub</button></div>
+    <section class="manager-only manage-form-card">
+      <div class="section-head"><div><span class="eyebrow">Manager</span><h2>Post an update</h2></div></div>
+      <div class="card pad">
+        <form class="issue-form" id="announce-form">
+          <div class="row">
+            <div>
+              <label for="announce-text">Update text</label>
+              <input type="text" id="announce-text" placeholder="What's the update?" required>
+            </div>
+            <div>
+              <label for="announce-kind">Type</label>
+              <select id="announce-kind">
+                <option value="important">Important</option>
+                <option value="temporary" selected>Temporary</option>
+              </select>
+            </div>
+          </div>
+          <button class="issue-submit" type="submit">Post update</button>
+        </form>
+      </div>
+    </section>
     <section id="sec-announce">
       <div class="section-head">
         <div><span class="eyebrow">Right now</span><h2>General updates</h2></div>
@@ -473,6 +516,28 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;margin-top:10px
   <!-- ================= SPOTLIGHT ================= -->
   <div class="view" id="view-spotlight" hidden>
     <div class="back-row"><button class="back-btn" data-back type="button"><span class="chev">←</span> Hub</button></div>
+    <section class="manager-only manage-form-card">
+      <div class="section-head"><div><span class="eyebrow">Manager</span><h2>Set spotlight</h2></div></div>
+      <div class="card pad">
+        <form class="issue-form" id="spotlight-form">
+          <div class="row">
+            <div>
+              <label for="spotlight-name">Name</label>
+              <input type="text" id="spotlight-name" placeholder="e.g. Anna" required>
+            </div>
+            <div>
+              <label for="spotlight-weekof">Week of</label>
+              <input type="text" id="spotlight-weekof" placeholder="e.g. 8 Sep">
+            </div>
+          </div>
+          <div>
+            <label for="spotlight-note">Why</label>
+            <textarea id="spotlight-note" placeholder="Why they earned it…"></textarea>
+          </div>
+          <button class="issue-submit" type="submit">Save spotlight</button>
+        </form>
+      </div>
+    </section>
     <section id="sec-spotlight">
       <div class="section-head"><div><span class="eyebrow">Recognition</span><h2>Team member of the week</h2></div></div>
       <div class="card spotlight" id="spotlight-card"></div>
@@ -482,6 +547,27 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;margin-top:10px
   <!-- ================= TASKS ================= -->
   <div class="view" id="view-tasks" hidden>
     <div class="back-row"><button class="back-btn" data-back type="button"><span class="chev">←</span> Hub</button></div>
+    <section class="manager-only manage-form-card">
+      <div class="section-head"><div><span class="eyebrow">Manager</span><h2>Add a task</h2></div></div>
+      <div class="card pad">
+        <form class="issue-form" id="task-form">
+          <div class="row">
+            <div>
+              <label for="task-text">Task</label>
+              <input type="text" id="task-text" placeholder="What needs doing?" required>
+            </div>
+            <div>
+              <label for="task-kind">Type</label>
+              <select id="task-kind">
+                <option value="priority">Priority</option>
+                <option value="routine" selected>Routine</option>
+              </select>
+            </div>
+          </div>
+          <button class="issue-submit" type="submit">Add task</button>
+        </form>
+      </div>
+    </section>
     <section id="sec-tasks">
       <div class="section-head"><div><span class="eyebrow">Today</span><h2>Daily tasks</h2></div></div>
       <div class="card pad">
@@ -500,6 +586,24 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;margin-top:10px
   <!-- ================= HANDOVERS ================= -->
   <div class="view" id="view-handovers" hidden>
     <div class="back-row"><button class="back-btn" data-back type="button"><span class="chev">←</span> Hub</button></div>
+    <section class="manager-only manage-form-card">
+      <div class="section-head"><div><span class="eyebrow">Manager</span><h2>Add a handover note</h2></div></div>
+      <div class="card pad">
+        <form class="issue-form" id="handover-form">
+          <div class="row">
+            <div>
+              <label for="handover-text">Note</label>
+              <input type="text" id="handover-text" placeholder="What should the next shift know?" required>
+            </div>
+            <div>
+              <label for="handover-author">From</label>
+              <input type="text" id="handover-author" placeholder="Your name" required>
+            </div>
+          </div>
+          <button class="issue-submit" type="submit">Add note</button>
+        </form>
+      </div>
+    </section>
     <section id="sec-handovers">
       <div class="section-head"><div><span class="eyebrow">Shift log</span><h2>Handovers</h2></div></div>
       <div class="card pad">
@@ -511,6 +615,34 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;margin-top:10px
   <!-- ================= EVENTS ================= -->
   <div class="view" id="view-events" hidden>
     <div class="back-row"><button class="back-btn" data-back type="button"><span class="chev">←</span> Hub</button></div>
+    <section class="manager-only manage-form-card">
+      <div class="section-head"><div><span class="eyebrow">Manager</span><h2>Add an event</h2></div></div>
+      <div class="card pad">
+        <form class="issue-form" id="event-form">
+          <div class="row">
+            <div>
+              <label for="event-title">Title</label>
+              <input type="text" id="event-title" placeholder="e.g. Noah's birthday" required>
+            </div>
+            <div>
+              <label for="event-date">Date</label>
+              <input type="date" id="event-date" required>
+            </div>
+          </div>
+          <div>
+            <label for="event-kind">Type</label>
+            <select id="event-kind">
+              <option value="birthday">Birthday</option>
+              <option value="anniversary">Anniversary</option>
+              <option value="delivery">Delivery</option>
+              <option value="appointment">Appointment</option>
+              <option value="other" selected>Other</option>
+            </select>
+          </div>
+          <button class="issue-submit" type="submit">Add event</button>
+        </form>
+      </div>
+    </section>
     <section id="sec-events">
       <div class="section-head"><div><span class="eyebrow">Coming up</span><h2>Events &amp; dates</h2></div></div>
       <div class="events-row" id="events-row"></div>
@@ -562,9 +694,10 @@ footer{text-align:center;color:var(--ink-faint);font-size:11.5px;margin-top:10px
 
 <script>
 /* ============================================================
-   DATA — this is the whole record. Claude edits this block and
-   republishes the page whenever Ibra feeds new numbers/updates.
-   Nothing else on the page needs to change.
+   DATA — sales, reviews, team roster and today's shift are fed
+   by Ibra and baked in here whenever the page is republished.
+   Announcements, tasks, handovers, events, spotlight and issues
+   live in Firebase instead, so the team can add to them directly.
    ============================================================ */
 const DATA = {
   meta: { updatedAt: null },
@@ -580,19 +713,7 @@ const DATA = {
   team: [
     // { id: 'p1', name: '...', role: '...', status: 'active'|'onboarding' }
   ],
-  spotlight: { name: '', weekOf: '', note: '' },
-  announcements: [
-    // { id: 'a1', text: '...', kind: 'important'|'temporary', createdAt: 1234567890000 }
-  ],
-  tasks: [
-    // { id: 't1', text: '...', kind: 'priority'|'routine', done: false, createdAt: 1234567890000 }
-  ],
-  handovers: [
-    // { id: 'h1', text: '...', author: '...', createdAt: 1234567890000 }
-  ],
-  events: [
-    // { id: 'e1', title: '...', date: '2026-09-10', kind: 'appointment'|'delivery'|'birthday'|'anniversary'|'other' }
-  ],
+  shiftToday: { date: '', names: [] },
 };
 
 /* ---------- theme ---------- */
@@ -611,6 +732,32 @@ function bindThemeToggle(){
   });
 }
 
+/* ---------- manager mode ---------- */
+/* A shared PIN gates adding/editing updates, tasks, handovers, events
+   and spotlight — the issue tracker stays open to everyone, by design. */
+const MANAGER_PIN = 'oost2026';
+function isManager(){ return document.documentElement.dataset.manager === '1'; }
+function setManagerMode(on){
+  document.documentElement.dataset.manager = on ? '1' : '0';
+  try{ localStorage.setItem('oost-hub-manager', on ? '1' : '0'); }catch(e){}
+  const btn = document.getElementById('manager-toggle');
+  if(btn) btn.classList.toggle('active', on);
+}
+function bindManagerToggle(){
+  let saved = null;
+  try{ saved = localStorage.getItem('oost-hub-manager'); }catch(e){}
+  setManagerMode(saved === '1');
+  const btn = document.getElementById('manager-toggle');
+  if(!btn) return;
+  btn.addEventListener('click', ()=>{
+    if(isManager()){ setManagerMode(false); return; }
+    const pin = prompt('Enter the manager PIN to add or edit content:');
+    if(pin === null) return;
+    if(pin === MANAGER_PIN) setManagerMode(true);
+    else alert('Incorrect PIN.');
+  });
+}
+
 function esc(s){
   return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
@@ -624,6 +771,15 @@ function timeAgo(ms){
   const hrs = Math.round(mins/60);
   if(hrs < 24) return hrs + 'h ago';
   return Math.round(hrs/24) + 'd ago';
+}
+
+function cacheToArray(cache){
+  return Object.keys(cache || {}).map(id => ({ id, ...cache[id] }));
+}
+function cacheToSortedArray(cache, dir){
+  const arr = cacheToArray(cache);
+  arr.sort((a,b)=> dir === 'asc' ? (a.createdAt||0)-(b.createdAt||0) : (b.createdAt||0)-(a.createdAt||0));
+  return arr;
 }
 
 /* ---------- clock ---------- */
@@ -660,10 +816,41 @@ showView(location.hash.replace('#','') || 'home');
 
 const state = DATA;
 
+/* =================== FIREBASE (Realtime Database) =================== */
+/* Shared backend so the team can submit issues and (with the manager PIN)
+   add updates/tasks/handovers/events/spotlight without any login. Config
+   is a public client identifier, safe to keep in the page source. */
+const firebaseConfig = {
+  apiKey: "AIzaSyCbU5L4Q5kwencPwh4ktsUUjcWy4zKq1cg",
+  authDomain: "oost---hub.firebaseapp.com",
+  databaseURL: "https://oost---hub-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "oost---hub",
+  storageBucket: "oost---hub.firebasestorage.app",
+  messagingSenderId: "5857832798",
+  appId: "1:5857832798:web:74d1d0166c5295823a69cf"
+};
+let rtdb = null;
+try{
+  if(window.firebase){
+    firebase.initializeApp(firebaseConfig);
+    rtdb = firebase.database();
+  }
+}catch(e){ console.error('Firebase init failed', e); }
+
 /* =================== META ("last fed") =================== */
 function renderMeta(){
   const m = state.meta;
   document.getElementById('last-fed').textContent = m && m.updatedAt ? 'Updated ' + timeAgo(m.updatedAt) : 'Waiting for first update';
+}
+
+/* =================== SHIFT TODAY =================== */
+function renderShiftToday(){
+  const el = document.getElementById('shift-pills');
+  if(!el) return;
+  const names = (state.shiftToday && state.shiftToday.names) || [];
+  el.innerHTML = names.length
+    ? names.map(n=>`<span class="shift-pill">${esc(n)}</span>`).join('')
+    : '<span class="empty" style="border:none;padding:0">Not set yet</span>';
 }
 
 /* =================== SALES =================== */
@@ -701,45 +888,40 @@ function renderSparkline(key, statusColor){
   </svg>`;
 }
 
-const RING_CONF = {
-  intakes: { r: 82, color: 'var(--ring-intakes)', label: 'Intakes' },
-  dpc:     { r: 64, color: 'var(--ring-dpc)',     label: 'DPC' },
-  vending: { r: 46, color: 'var(--ring-vending)', label: 'Vending' },
-};
+function setRing(id, pct){
+  const el = document.getElementById('ring-'+id);
+  if(!el) return;
+  const r = 35;
+  const circ = 2 * Math.PI * r;
+  const clamped = Math.min(Math.max(pct,0),1);
+  el.style.strokeDasharray = circ.toFixed(1);
+  el.style.strokeDashoffset = (circ * (1 - clamped)).toFixed(1);
+  el.style.opacity = clamped <= 0 ? '0' : '1';
+}
 
 function renderRings(){
   const s = state.sales;
   let totalActual = 0, totalTarget = 0;
   SALES_KEYS.forEach(({key})=>{
-    const v = (s && s[key]) || { monthlyActual:0, monthlyTarget:0 };
-    const conf = RING_CONF[key];
+    const v = (s && s[key]) || { todayActual:0, dailyTarget:0, monthlyActual:0, monthlyTarget:0 };
     const pct = v.monthlyTarget > 0 ? v.monthlyActual / v.monthlyTarget : 0;
-    const circ = 2 * Math.PI * conf.r;
-    const clamped = Math.min(Math.max(pct,0),1);
-    const el = document.getElementById('ring-'+key);
-    el.style.strokeDasharray = circ.toFixed(1);
-    el.style.strokeDashoffset = (circ * (1 - clamped)).toFixed(1);
-    el.style.opacity = clamped <= 0 ? '0' : '1';
+    setRing(key, pct);
+    const pctEl = document.getElementById('ring-'+key+'-pct');
+    if(pctEl) pctEl.textContent = v.monthlyTarget > 0 ? Math.round(pct*100) + '%' : '–';
+    const todayEl = document.getElementById('m-'+key+'-today');
+    if(todayEl) todayEl.textContent = `${v.todayActual||0} / ${v.dailyTarget||0}`;
+    const monthEl = document.getElementById('m-'+key+'-month');
+    if(monthEl) monthEl.textContent = `${v.monthlyActual||0} / ${v.monthlyTarget||0}`;
     totalActual += v.monthlyActual || 0;
     totalTarget += v.monthlyTarget || 0;
   });
-  const overallPct = totalTarget > 0 ? Math.round((totalActual/totalTarget)*100) : 0;
-  document.getElementById('rings-center-pct').textContent = (s ? overallPct : '–') + '%';
-
-  document.getElementById('ring-legend').innerHTML = SALES_KEYS.map(({key,label})=>{
-    const v = (s && s[key]) || { monthlyActual:0, monthlyTarget:0 };
-    return `<div class="ring-legend-row">
-      <span class="dot" style="background:${RING_CONF[key].color}"></span>
-      <span class="name">${esc(RING_CONF[key].label)}</span>
-      <span class="val"><b>${v.monthlyActual||0}</b> / ${v.monthlyTarget||0}</span>
-    </div>`;
-  }).join('');
 
   const momentumEl = document.getElementById('momentum');
   if(momentumEl){
     if(!s || totalTarget === 0){
       momentumEl.textContent = 'Waiting for this month\'s numbers.';
     } else {
+      const overallPct = Math.round((totalActual/totalTarget)*100);
       const now = new Date();
       const dayOfMonth = now.getDate();
       const daysInMonth = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
@@ -747,8 +929,8 @@ function renderRings(){
       const pacePct = Math.round((dayOfMonth / daysInMonth) * 100);
       const onPace = overallPct >= pacePct - 5;
       momentumEl.innerHTML = onPace
-        ? `<b>On pace</b> — ${overallPct}% to target with ${daysLeft} day${daysLeft===1?'':'s'} left this month. Keep it up.`
-        : `<b>${overallPct}% to target</b> with ${daysLeft} day${daysLeft===1?'':'s'} left — a strong push gets us there.`;
+        ? `<b>On pace</b> — ${overallPct}% to target across sales, with ${daysLeft} day${daysLeft===1?'':'s'} left this month. Keep it up.`
+        : `<b>${overallPct}% to target</b> across sales, with ${daysLeft} day${daysLeft===1?'':'s'} left — a strong push gets us there.`;
     }
   }
 }
@@ -756,30 +938,13 @@ function renderRings(){
 /* =================== GOOGLE REVIEWS =================== */
 function renderReviews(){
   const r = state.reviews;
-  const ringEl = document.getElementById('ring-reviews');
   const pct = (r && r.monthlyTarget > 0) ? Math.min(Math.max(r.newThisMonth / r.monthlyTarget, 0), 1) : 0;
-  const radius = 31;
-  const circ = 2 * Math.PI * radius;
-  ringEl.style.strokeDasharray = circ.toFixed(1);
-  ringEl.style.strokeDashoffset = (circ * (1 - pct)).toFixed(1);
-  ringEl.style.opacity = pct <= 0 ? '0' : '1';
+  setRing('reviews', pct);
   document.getElementById('reviews-ring-pct').textContent = r && r.monthlyTarget > 0 ? Math.round(pct*100) + '%' : '–';
-
-  document.getElementById('reviews-avg').textContent = r && r.averageRating ? r.averageRating.toFixed(1) : '–';
-
-  const full = r ? Math.round(r.averageRating) : 0;
-  document.getElementById('reviews-stars').innerHTML = Array.from({length:5}, (_,i)=>{
-    const filled = i < full;
-    return `<svg viewBox="0 0 24 24" fill="${filled ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
-  }).join('');
-
-  document.getElementById('reviews-meta').textContent = r && r.totalReviews
-    ? `${r.totalReviews} total reviews` : 'Waiting for Google review data';
-
-  const footEl = document.getElementById('reviews-foot');
-  footEl.innerHTML = (r && r.monthlyTarget > 0)
-    ? `<b>${r.newThisMonth||0}</b> new this month · target <b>${r.monthlyTarget}</b>`
-    : 'New reviews this month vs. target.';
+  document.getElementById('reviews-avg').textContent = r && r.averageRating ? r.averageRating.toFixed(1) + ' / 5' : '– / 5';
+  document.getElementById('reviews-newtarget').textContent = r ? `${r.newThisMonth||0} / ${r.monthlyTarget||0}` : '– / –';
+  const totalEl = document.getElementById('reviews-total');
+  if(totalEl) totalEl.textContent = r && r.totalReviews ? `· ${r.totalReviews} total` : '';
 }
 
 /* =================== TEAM OVERVIEW =================== */
@@ -819,34 +984,34 @@ function renderHomePreviews(){
   // updates
   const updEl = document.getElementById('nc-updates');
   if(updEl){
-    const items = state.announcements;
+    const items = cacheToSortedArray(announcementsCache);
     updEl.textContent = items.length ? `${items.length} active — "${items[0].text}"` : 'Nothing posted';
   }
   // tasks
   const tkEl = document.getElementById('nc-tasks');
   if(tkEl){
-    const open = state.tasks.filter(t=>!t.done);
+    const items = cacheToArray(tasksCache);
+    const open = items.filter(t=>!t.done);
     const priority = open.filter(t=>t.kind==='priority').length;
-    tkEl.textContent = state.tasks.length ? `${open.length} open (${priority} priority)` : 'Nothing added yet';
+    tkEl.textContent = items.length ? `${open.length} open (${priority} priority)` : 'Nothing added yet';
   }
   // handovers
   const hoEl = document.getElementById('nc-handovers');
   if(hoEl){
-    const items = state.handovers;
+    const items = cacheToSortedArray(handoversCache);
     hoEl.textContent = items.length ? `${esc(items[0].author||'Team')}: "${items[0].text}"` : 'No notes yet';
   }
   // events
   const evEl = document.getElementById('nc-events');
   if(evEl){
     const today = new Date().toISOString().slice(0,10);
-    const upcoming = [...state.events].filter(e=>e.date >= today).sort((a,b)=>a.date.localeCompare(b.date));
+    const upcoming = cacheToArray(eventsCache).filter(e=>e.date >= today).sort((a,b)=>a.date.localeCompare(b.date));
     evEl.textContent = upcoming.length ? `Next: ${upcoming[0].title} — ${upcoming[0].date}` : 'Nothing scheduled';
   }
   // spotlight
   const spEl = document.getElementById('nc-spotlight');
   if(spEl){
-    const s2 = state.spotlight;
-    spEl.textContent = (s2 && s2.name) ? s2.name : 'Not nominated yet';
+    spEl.textContent = (spotlightCache && spotlightCache.name) ? spotlightCache.name : 'Not nominated yet';
   }
   // team
   const teamEl = document.getElementById('nc-team');
@@ -855,6 +1020,8 @@ function renderHomePreviews(){
     const onboarding = t.filter(p=>p.status==='onboarding').length;
     teamEl.textContent = t.length ? `${t.length} team members${onboarding ? ` · ${onboarding} onboarding` : ''}` : 'No roster yet';
   }
+  // issues
+  renderIssuesHomePreview();
 }
 
 function renderSales(){
@@ -888,10 +1055,186 @@ function renderSales(){
   renderHomePreviews();
 }
 
-/* =================== SPOTLIGHT =================== */
+/* =================== ANNOUNCEMENTS (Firebase) =================== */
+let announcementsCache = {};
+function renderAnnouncements(){
+  const list = document.getElementById('announce-list');
+  const items = cacheToSortedArray(announcementsCache);
+  if(!items.length){ list.innerHTML = '<div class="empty">No updates posted.</div>'; renderHomePreviews(); return; }
+  list.innerHTML = items.map(a=>`
+    <div class="announce ${a.kind==='important'?'important':''}">
+      <span class="tag ${esc(a.kind)}">${a.kind === 'important' ? 'Important' : 'Temporary'}</span>
+      <div style="flex:1">
+        <p>${esc(a.text)}</p>
+        <div class="meta">${timeAgo(a.createdAt)}</div>
+      </div>
+      <button class="manager-only inline del-btn" data-id="${esc(a.id)}" data-action="delete-announce" type="button" title="Delete">✕</button>
+    </div>`).join('');
+  list.querySelectorAll('[data-action="delete-announce"]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ if(rtdb) rtdb.ref('announcements/'+btn.dataset.id).remove(); });
+  });
+  renderHomePreviews();
+}
+function bindAnnounceForm(){
+  const form = document.getElementById('announce-form');
+  if(!form) return;
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    if(!rtdb) return;
+    const text = document.getElementById('announce-text').value.trim();
+    const kind = document.getElementById('announce-kind').value;
+    if(!text) return;
+    rtdb.ref('announcements').push({ text, kind, createdAt: firebase.database.ServerValue.TIMESTAMP })
+      .then(()=> form.reset());
+  });
+}
+function listenAnnouncements(){
+  if(!rtdb){ renderAnnouncements(); return; }
+  rtdb.ref('announcements').on('value', snap=>{
+    announcementsCache = snap.val() || {};
+    renderAnnouncements();
+  }, err=> console.error('announcements read failed', err));
+}
+
+/* =================== TASKS (Firebase) =================== */
+let tasksCache = {};
+function renderTaskGroup(kind, containerId){
+  const el = document.getElementById(containerId);
+  const items = cacheToArray(tasksCache).filter(t=>t.kind===kind).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));
+  if(!items.length){ el.innerHTML = '<div class="empty">Nothing here yet.</div>'; return; }
+  el.innerHTML = items.map(t=>`
+    <div class="task ${t.done?'done':''} ${kind==='priority'?'priority':''}">
+      <span class="check ${t.done?'on':''}" data-action="toggle-task" data-id="${esc(t.id)}"></span>
+      <p>${esc(t.text)}</p>
+      <button class="manager-only inline del-btn" data-id="${esc(t.id)}" data-action="delete-task" type="button" title="Delete">✕</button>
+    </div>`).join('');
+  el.querySelectorAll('[data-action="toggle-task"]').forEach(chk=>{
+    chk.addEventListener('click', ()=>{
+      if(!rtdb) return;
+      const id = chk.dataset.id;
+      const cur = tasksCache[id] || {};
+      rtdb.ref('tasks/'+id).update({ done: !cur.done });
+    });
+  });
+  el.querySelectorAll('[data-action="delete-task"]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ if(rtdb) rtdb.ref('tasks/'+btn.dataset.id).remove(); });
+  });
+}
+function renderTasks(){
+  renderTaskGroup('priority','tasks-priority');
+  renderTaskGroup('routine','tasks-routine');
+  renderHomePreviews();
+}
+function bindTaskForm(){
+  const form = document.getElementById('task-form');
+  if(!form) return;
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    if(!rtdb) return;
+    const text = document.getElementById('task-text').value.trim();
+    const kind = document.getElementById('task-kind').value;
+    if(!text) return;
+    rtdb.ref('tasks').push({ text, kind, done:false, createdAt: firebase.database.ServerValue.TIMESTAMP })
+      .then(()=> form.reset());
+  });
+}
+function listenTasks(){
+  if(!rtdb){ renderTasks(); return; }
+  rtdb.ref('tasks').on('value', snap=>{
+    tasksCache = snap.val() || {};
+    renderTasks();
+  }, err=> console.error('tasks read failed', err));
+}
+
+/* =================== HANDOVERS (Firebase) =================== */
+let handoversCache = {};
+function renderHandovers(){
+  const list = document.getElementById('handover-list');
+  const items = cacheToSortedArray(handoversCache);
+  if(!items.length){ list.innerHTML = '<div class="empty">No handover notes yet.</div>'; renderHomePreviews(); return; }
+  list.innerHTML = items.map(h=>`
+    <div class="handover">
+      <div style="flex:1">
+        <p>${esc(h.text)}</p>
+        <div class="meta">${esc(h.author || 'Team')} &middot; ${timeAgo(h.createdAt)}</div>
+      </div>
+      <button class="manager-only inline del-btn" data-id="${esc(h.id)}" data-action="delete-handover" type="button" title="Delete">✕</button>
+    </div>`).join('');
+  list.querySelectorAll('[data-action="delete-handover"]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ if(rtdb) rtdb.ref('handovers/'+btn.dataset.id).remove(); });
+  });
+  renderHomePreviews();
+}
+function bindHandoverForm(){
+  const form = document.getElementById('handover-form');
+  if(!form) return;
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    if(!rtdb) return;
+    const text = document.getElementById('handover-text').value.trim();
+    const author = document.getElementById('handover-author').value.trim();
+    if(!text) return;
+    rtdb.ref('handovers').push({ text, author, createdAt: firebase.database.ServerValue.TIMESTAMP })
+      .then(()=> form.reset());
+  });
+}
+function listenHandovers(){
+  if(!rtdb){ renderHandovers(); return; }
+  rtdb.ref('handovers').on('value', snap=>{
+    handoversCache = snap.val() || {};
+    renderHandovers();
+  }, err=> console.error('handovers read failed', err));
+}
+
+/* =================== EVENTS (Firebase) =================== */
+let eventsCache = {};
+function renderEvents(){
+  const row = document.getElementById('events-row');
+  const items = cacheToArray(eventsCache).sort((a,b)=> (a.date||'').localeCompare(b.date||''));
+  if(!items.length){ row.innerHTML = '<div class="empty" style="min-width:100%">Nothing on the calendar yet.</div>'; renderHomePreviews(); return; }
+  row.innerHTML = items.map(ev=>{
+    const d = ev.date ? new Date(ev.date+'T00:00:00') : null;
+    const day = d ? d.getDate() : '–';
+    const mon = d ? d.toLocaleDateString('en-GB',{month:'short'}) : '';
+    return `<div class="card event-card">
+      <button class="manager-only del-btn" data-id="${esc(ev.id)}" data-action="delete-event" type="button" title="Delete" style="position:absolute;top:8px;right:8px;margin:0">✕</button>
+      <span class="event-kind ${esc(ev.kind)}">${esc(ev.kind)}</span>
+      <div class="day">${day}</div>
+      <div class="mon">${esc(mon)}</div>
+      <div class="title">${esc(ev.title)}</div>
+    </div>`;
+  }).join('');
+  row.querySelectorAll('[data-action="delete-event"]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ if(rtdb) rtdb.ref('events/'+btn.dataset.id).remove(); });
+  });
+  renderHomePreviews();
+}
+function bindEventForm(){
+  const form = document.getElementById('event-form');
+  if(!form) return;
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    if(!rtdb) return;
+    const title = document.getElementById('event-title').value.trim();
+    const date = document.getElementById('event-date').value;
+    const kind = document.getElementById('event-kind').value;
+    if(!title || !date) return;
+    rtdb.ref('events').push({ title, date, kind }).then(()=> form.reset());
+  });
+}
+function listenEvents(){
+  if(!rtdb){ renderEvents(); return; }
+  rtdb.ref('events').on('value', snap=>{
+    eventsCache = snap.val() || {};
+    renderEvents();
+  }, err=> console.error('events read failed', err));
+}
+
+/* =================== SPOTLIGHT (Firebase) =================== */
+let spotlightCache = null;
 function renderSpotlight(){
   const card = document.getElementById('spotlight-card');
-  const s = state.spotlight;
+  const s = spotlightCache;
   if(!s || !s.name){
     card.innerHTML = `<div class="empty" style="border:none;width:100%">No one nominated yet this week.</div>`;
     renderHomePreviews();
@@ -907,97 +1250,31 @@ function renderSpotlight(){
     </div>`;
   renderHomePreviews();
 }
-
-/* =================== ANNOUNCEMENTS =================== */
-function renderAnnouncements(){
-  const list = document.getElementById('announce-list');
-  const items = state.announcements;
-  if(!items.length){ list.innerHTML = '<div class="empty">No updates posted.</div>'; renderHomePreviews(); return; }
-  list.innerHTML = items.map(a=>`
-    <div class="announce ${a.kind==='important'?'important':''}">
-      <span class="tag ${esc(a.kind)}">${a.kind === 'important' ? 'Important' : 'Temporary'}</span>
-      <div style="flex:1">
-        <p>${esc(a.text)}</p>
-        <div class="meta">${timeAgo(a.createdAt)}</div>
-      </div>
-    </div>`).join('');
-  renderHomePreviews();
+function bindSpotlightForm(){
+  const form = document.getElementById('spotlight-form');
+  if(!form) return;
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    if(!rtdb) return;
+    const name = document.getElementById('spotlight-name').value.trim();
+    const weekOf = document.getElementById('spotlight-weekof').value.trim();
+    const note = document.getElementById('spotlight-note').value.trim();
+    if(!name) return;
+    rtdb.ref('spotlight').set({ name, weekOf, note });
+  });
+}
+function listenSpotlight(){
+  if(!rtdb){ renderSpotlight(); return; }
+  rtdb.ref('spotlight').on('value', snap=>{
+    spotlightCache = snap.val() || null;
+    renderSpotlight();
+  }, err=> console.error('spotlight read failed', err));
 }
 
-/* =================== TASKS =================== */
-function renderTaskGroup(kind, containerId){
-  const el = document.getElementById(containerId);
-  const items = state.tasks.filter(t=>t.kind===kind);
-  if(!items.length){ el.innerHTML = '<div class="empty">Nothing here yet.</div>'; return; }
-  el.innerHTML = items.map(t=>`
-    <div class="task ${t.done?'done':''} ${kind==='priority'?'priority':''}">
-      <span class="check ${t.done?'on':''}"></span>
-      <p>${esc(t.text)}</p>
-    </div>`).join('');
-}
-function renderTasks(){
-  renderTaskGroup('priority','tasks-priority');
-  renderTaskGroup('routine','tasks-routine');
-  renderHomePreviews();
-}
-
-/* =================== HANDOVERS =================== */
-function renderHandovers(){
-  const list = document.getElementById('handover-list');
-  const items = state.handovers;
-  if(!items.length){ list.innerHTML = '<div class="empty">No handover notes yet.</div>'; renderHomePreviews(); return; }
-  list.innerHTML = items.map(h=>`
-    <div class="handover">
-      <p>${esc(h.text)}</p>
-      <div class="meta">${esc(h.author || 'Team')} &middot; ${timeAgo(h.createdAt)}</div>
-    </div>`).join('');
-  renderHomePreviews();
-}
-
-/* =================== EVENTS =================== */
-function renderEvents(){
-  const row = document.getElementById('events-row');
-  const items = [...state.events].sort((a,b)=> (a.date||'').localeCompare(b.date||''));
-  if(!items.length){ row.innerHTML = '<div class="empty" style="min-width:100%">Nothing on the calendar yet.</div>'; renderHomePreviews(); return; }
-  row.innerHTML = items.map(ev=>{
-    const d = ev.date ? new Date(ev.date+'T00:00:00') : null;
-    const day = d ? d.getDate() : '–';
-    const mon = d ? d.toLocaleDateString('en-GB',{month:'short'}) : '';
-    return `<div class="card event-card">
-      <span class="event-kind ${esc(ev.kind)}">${esc(ev.kind)}</span>
-      <div class="day">${day}</div>
-      <div class="mon">${esc(mon)}</div>
-      <div class="title">${esc(ev.title)}</div>
-    </div>`;
-  }).join('');
-  renderHomePreviews();
-}
-
-/* =================== ISSUES (Firebase Realtime Database) =================== */
-/* Team members can submit reports and view/manage this list without any login —
-   backed by a free Firebase Realtime Database. Config is a public client
-   identifier, safe to keep in the page source. */
-const firebaseConfig = {
-  apiKey: "AIzaSyCbU5L4Q5kwencPwh4ktsUUjcWy4zKq1cg",
-  authDomain: "oost---hub.firebaseapp.com",
-  databaseURL: "https://oost---hub-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "oost---hub",
-  storageBucket: "oost---hub.firebasestorage.app",
-  messagingSenderId: "5857832798",
-  appId: "1:5857832798:web:74d1d0166c5295823a69cf"
-};
-
-let issuesDB = null;
+/* =================== ISSUES (Firebase) =================== */
 let issuesCache = {};
 let issueTab = 'open';
 const ISSUE_LABELS = { member:'Member', machine:'Machine', facility:'Facility' };
-
-try{
-  if(window.firebase){
-    firebase.initializeApp(firebaseConfig);
-    issuesDB = firebase.database();
-  }
-}catch(e){ console.error('Firebase init failed', e); }
 
 function bindIssueForm(){
   const form = document.getElementById('issue-form');
@@ -1005,7 +1282,7 @@ function bindIssueForm(){
   form.addEventListener('submit', (e)=>{
     e.preventDefault();
     const note = document.getElementById('issue-form-note');
-    if(!issuesDB){ note.textContent = 'Could not connect — try again in a moment.'; return; }
+    if(!rtdb){ note.textContent = 'Could not connect — try again in a moment.'; return; }
     const type = document.getElementById('issue-type').value;
     const reporter = document.getElementById('issue-reporter').value.trim();
     const desc = document.getElementById('issue-desc').value.trim();
@@ -1013,7 +1290,7 @@ function bindIssueForm(){
     const submitBtn = form.querySelector('.issue-submit');
     submitBtn.disabled = true;
     note.textContent = '';
-    issuesDB.ref('issues').push({
+    rtdb.ref('issues').push({
       type, reporter, description: desc,
       status: 'open', comment: '',
       createdAt: firebase.database.ServerValue.TIMESTAMP
@@ -1043,7 +1320,7 @@ function bindIssueTabs(){
 function renderIssueList(){
   const list = document.getElementById('issue-list');
   if(!list) return;
-  const all = Object.keys(issuesCache).map(id=>({ id, ...issuesCache[id] }));
+  const all = cacheToArray(issuesCache);
   const filtered = all
     .filter(i => issueTab === 'resolved' ? i.status === 'resolved' : i.status !== 'resolved')
     .sort((a,b)=> (b.createdAt||0) - (a.createdAt||0));
@@ -1077,17 +1354,17 @@ function renderIssueList(){
   list.querySelectorAll('.issue-card').forEach(card=>{
     const id = card.dataset.id;
     card.querySelector('[data-action="toggle"]').addEventListener('click', ()=>{
-      if(!issuesDB) return;
+      if(!rtdb) return;
       const cur = issuesCache[id] || {};
-      issuesDB.ref('issues/'+id).update({ status: cur.status === 'resolved' ? 'open' : 'resolved' });
+      rtdb.ref('issues/'+id).update({ status: cur.status === 'resolved' ? 'open' : 'resolved' });
     });
     const commentBtn = card.querySelector('[data-action="comment"]');
     const commentInput = card.querySelector('.issue-comment-row input');
     commentBtn.addEventListener('click', ()=>{
-      if(!issuesDB) return;
+      if(!rtdb) return;
       const val = commentInput.value.trim();
       if(!val) return;
-      issuesDB.ref('issues/'+id).update({ comment: val }).then(()=>{ commentInput.value=''; });
+      rtdb.ref('issues/'+id).update({ comment: val }).then(()=>{ commentInput.value=''; });
     });
   });
 }
@@ -1101,14 +1378,14 @@ function renderIssuesHomePreview(){
 }
 
 function listenIssues(){
-  if(!issuesDB){
+  if(!rtdb){
     const el = document.getElementById('nc-issues');
     if(el) el.textContent = 'Offline';
     const list = document.getElementById('issue-list');
     if(list) list.innerHTML = '<div class="empty">Could not connect to the issue tracker.</div>';
     return;
   }
-  issuesDB.ref('issues').on('value', (snap)=>{
+  rtdb.ref('issues').on('value', (snap)=>{
     issuesCache = snap.val() || {};
     renderIssueList();
     renderIssuesHomePreview();
@@ -1117,16 +1394,23 @@ function listenIssues(){
 
 /* ---------- boot ---------- */
 bindThemeToggle();
+bindManagerToggle();
 bindIssueForm();
 bindIssueTabs();
+bindAnnounceForm();
+bindTaskForm();
+bindHandoverForm();
+bindEventForm();
+bindSpotlightForm();
 listenIssues();
+listenAnnouncements();
+listenTasks();
+listenHandovers();
+listenEvents();
+listenSpotlight();
 renderMeta();
 renderSales();
 renderReviews();
 renderTeam();
-renderSpotlight();
-renderAnnouncements();
-renderTasks();
-renderHandovers();
-renderEvents();
+renderShiftToday();
 </script>
